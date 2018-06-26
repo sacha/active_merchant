@@ -202,10 +202,10 @@ module ActiveMerchant #:nodoc:
           when 'ErrorRes'
             success = false
           when 'AcquirerStatusRes'
-            raise SecurityError, "Message verification failed.", caller unless status_response_verified?(response)
+            raise SecurityError, 'Message verification failed.', caller unless status_response_verified?(response)
             success = (response['AcquirerStatusRes']['Transaction']['status'] == 'Success')
           else
-            raise ArgumentError, "Unknown response type.", caller
+            raise ArgumentError, 'Unknown response type.', caller
         end
 
         return IdealResponse.new(success, response.keys[0], response, :test => test?)

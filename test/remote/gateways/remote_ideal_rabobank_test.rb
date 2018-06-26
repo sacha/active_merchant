@@ -32,16 +32,16 @@ class RemoteIdealRabobankTest < Test::Unit::TestCase
 
     assert_success response
     assert response.test?
-    assert_nil response.error, "Response should not have an error"
+    assert_nil response.error, 'Response should not have an error'
   end
 
   def test_return_errors
     response = @gateway.setup_purchase(0.5, @options)
     assert_failure response
     assert_equal 'BR1210', response.error[ 'errorCode']
-    assert_not_nil response.error['errorMessage'],   "Response should contain an Error message"
-    assert_not_nil response.error['errorDetail'],    "Response should contain an Error Detail message"
-    assert_not_nil response.error['consumerMessage'],"Response should contain an Consumer Error message"
+    assert_not_nil response.error['errorMessage'],   'Response should contain an Error message'
+    assert_not_nil response.error['errorDetail'],    'Response should contain an Error Detail message'
+    assert_not_nil response.error['consumerMessage'],'Response should contain an Consumer Error message'
   end
 
   # default payment should succeed
@@ -52,7 +52,7 @@ class RemoteIdealRabobankTest < Test::Unit::TestCase
 
     assert_equal '1234567890123456', response.transaction['purchaseID']
     assert_equal '0020', response.params['AcquirerTrxRes']['Acquirer']['acquirerID']
-    assert_not_nil response.service_url, "Response should contain a service url for payment"
+    assert_not_nil response.service_url, 'Response should contain a service url for payment'
 
     # now authorize the payment, issuer simulator has completed the payment
     response = @gateway.capture(response.transaction['transactionID'])

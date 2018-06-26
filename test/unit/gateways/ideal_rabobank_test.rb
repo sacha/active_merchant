@@ -68,11 +68,11 @@ class IdealRabobankTest < Test::Unit::TestCase
   end
 
   def assert_ideal_message xml_request, message_name
-    assert_equal '1.0', xml_request.version, "Should be version 1.0 of the xml specification"
-    assert_equal 'UTF-8', xml_request.encoding, "Should be UTF-8 encoding"
-    assert_equal 'http://www.idealdesk.com/Message', xml_request.root.namespace, "Should have a valid namespace"
-    assert_equal message_name, xml_request.root.name, "Root should match messagename"
-    assert_equal '1.1.0', xml_request.root.attribute('version', nil).value, "Should have a ideal version number"
+    assert_equal '1.0', xml_request.version, 'Should be version 1.0 of the xml specification'
+    assert_equal 'UTF-8', xml_request.encoding, 'Should be UTF-8 encoding'
+    assert_equal 'http://www.idealdesk.com/Message', xml_request.root.namespace, 'Should have a valid namespace'
+    assert_equal message_name, xml_request.root.name, 'Root should match messagename'
+    assert_equal '1.1.0', xml_request.root.attribute('version', nil).value, 'Should have a ideal version number'
     assert_equal @stubbed_time_stamp, xml_request.root.elements['createDateTimeStamp'].text, 'Should have a time stamp.'
   end
 
@@ -94,7 +94,7 @@ class IdealRabobankTest < Test::Unit::TestCase
     assert_equal '0050000002797923', transaction['transactionID'], 'Should map to transaction_id'
     assert_equal '9459897270157938', transaction['purchaseID'], 'Should map to purchase_id'
     assert_equal '0050', response.params['AcquirerTrxRes']['Acquirer']['acquirerID'], 'Should map to acquirer_id'
-    assert_equal 'https://issuer.url/action?trxid=0050000002797923', response.service_url, "Response should have an issuer url"
+    assert_equal 'https://issuer.url/action?trxid=0050000002797923', response.service_url, 'Response should have an issuer url'
   end
 
   def test_error_response
@@ -103,10 +103,10 @@ class IdealRabobankTest < Test::Unit::TestCase
     assert_failure response
     assert_equal 'ErrorRes', response.message, 'Should return error response'
     error = response.error
-    assert_equal "BR1210", error['errorCode'], "Should return an error code"
-    assert_equal "Field generating error: Parameter \'25.99\' is not a natural(or \'-\') format", error['errorDetail'], "Should return an error detail"
-    assert_equal "Value contains non-permitted character", error['errorMessage'], "Should return an error message"
-    assert_equal "Betalen met iDEAL is nu niet mogelijk. Probeer het later nogmaals of betaal op een andere manier.", error['consumerMessage'], "Should return consumer message"
+    assert_equal 'BR1210', error['errorCode'], 'Should return an error code'
+    assert_equal "Field generating error: Parameter \'25.99\' is not a natural(or \'-\') format", error['errorDetail'], 'Should return an error detail'
+    assert_equal 'Value contains non-permitted character', error['errorMessage'], 'Should return an error message'
+    assert_equal 'Betalen met iDEAL is nu niet mogelijk. Probeer het later nogmaals of betaal op een andere manier.', error['consumerMessage'], 'Should return consumer message'
   end
 
   def test_capture
@@ -152,8 +152,8 @@ class IdealRabobankTest < Test::Unit::TestCase
     response = @gateway.issuers
     assert_success response
     list = response.issuer_list
-    assert_equal 4, list.size, "Should return multiple issuers"
-    assert_equal '0031', list[0]['issuerID'], "Should return an issuerID"
+    assert_equal 4, list.size, 'Should return multiple issuers'
+    assert_equal '0031', list[0]['issuerID'], 'Should return an issuerID'
   end
 
   def test_issuers_one_issuer
@@ -161,8 +161,8 @@ class IdealRabobankTest < Test::Unit::TestCase
     response = @gateway.issuers
     assert_success response
     list = response.issuer_list
-    assert_equal 1, list.size, "Should return one issuer"
-    assert_equal '0031', list[0]['issuerID'], "Should return an issuerID"
+    assert_equal 1, list.size, 'Should return one issuer'
+    assert_equal '0031', list[0]['issuerID'], 'Should return an issuerID'
   end
 
   def successful_transaction_response
