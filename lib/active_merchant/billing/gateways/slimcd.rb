@@ -3,8 +3,8 @@ require 'rexml/document'
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class SlimcdGateway < Gateway
-      #API_VERSION = "0.1"
-      #API_PRODUCT = "ActiveMerchant"
+      API_VERSION = "0.1"
+      API_PRODUCT = "ActiveMerchant"
 
       class_attribute :test_url, :live_url, :duplicate_window
 
