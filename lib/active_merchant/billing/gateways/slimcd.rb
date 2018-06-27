@@ -3,10 +3,10 @@ require 'rexml/document'
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class SlimcdGateway < Gateway
-      API_VERSION = "0.1"
-      API_PRODUCT = "ActiveMerchant"
+      #API_VERSION = "0.1"
+      #API_PRODUCT = "ActiveMerchant"
 
-      class_inheritable_accessor :test_url, :live_url, :duplicate_window
+      #class_inheritable_accessor :test_url, :live_url, :duplicate_window
 
       self.test_url = 'https://stats.slimcd.com/wswebservices/transact.asmx/PostXML'
       self.live_url = 'https://stats.slimcd.com/wswebservices/transact.asmx/PostXML'
